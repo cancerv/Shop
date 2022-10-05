@@ -5,5 +5,33 @@
     "price": 100,
     "description": "Крутой шампунь для объема",
     "image": "https://skin.ru/storage/products/313769/conversions/b4bc691c-83fd-11ec-91e8-76a2d0dec5cc-preview_fit_default.jpg"
+  },
+  {
+    "id": 2,
+    "title": "Пельмени",
+    "price": 250,
+    "description": "Пельмешки без спешки",
+    "image": "https://www.sostav.ru/articles/rus/2005/13.05/news/images/1samysh2.jpg"
+  },
+  {
+    "id": 3,
+    "title": "Торт медовик",
+    "price": 1000,
+    "description": "Медовик, тот который из ВкусВилла, замороженный, очень вкусный",
+    "image": "https://foodsee.shop/icache/product/124/1241922_800x600.jpg"
+  },
+  {
+    "id": 4,
+    "title": "Туалетная бумага",
+    "price": 53,
+    "description": "Белая двухслойная с ромашкой",
+    "image": "https://lenta.servicecdn.ru/globalassets/1/-/24/40/52/261719_7.png?preset=fulllossywhite"
+  },
+  {
+    "id": 5,
+    "title": "Килька в томате",
+    "price": 78,
+    "description": "Килька в томатном соусе балтийская обжаренная неразделанная",
+    "image": "https://vkusnie-vkusnosti.ru/wp-content/uploads/2018/05/kilka-vtomate0.jpg"
   }
 ]

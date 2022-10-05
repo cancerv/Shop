@@ -24,7 +24,9 @@ public class Cart implements CartInterface {
 
     @Override
     public void deleteItem(int idx) {
-        this.items.remove(idx);
+        if (idx < this.items.size()) {
+            this.items.remove(idx);
+        }
     }
 
     @Override

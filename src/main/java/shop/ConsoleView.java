@@ -110,7 +110,7 @@ public class ConsoleView implements ViewInterface {
 
     @Override
     public String showPaidMessage() {
-        return "Оплачено!";
+        return "Заказ оплачен!";
     }
 
     @Override

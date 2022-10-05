@@ -1,6 +1,7 @@
 package shop;
 
 import shop.contracts.CartInterface;
+import shop.contracts.PaymentInterface;
 import shop.contracts.StorageInterface;
 import shop.contracts.ViewInterface;
 
@@ -11,12 +12,14 @@ public class ConsoleController {
     private final ViewInterface view;
     private final CartInterface cart;
     private final StorageInterface storage;
+    private final PaymentInterface payment;
     private final Scanner scanner;
 
-    public ConsoleController(ViewInterface view, CartInterface cart, StorageInterface storage) {
+    public ConsoleController(ViewInterface view, CartInterface cart, StorageInterface storage, PaymentInterface payment) {
         this.view = view;
         this.cart = cart;
         this.storage = storage;
+        this.payment = payment;
         this.scanner = new Scanner(System.in);
     }
 
@@ -54,14 +57,18 @@ public class ConsoleController {
         System.out.println(this.view.requestProductId());
         int productId = this.scanner.nextInt();
         if (productId != 0) {
-            Product product = this.storage.getProduct(productId);
-            System.out.println(this.view.showProduct(product));
-            System.out.println(this.view.requestProductAction());
-            int productAction = this.scanner.nextInt();
-            if (productAction == 1) {
-                System.out.println(this.view.requestProductAmount());
-                int amount = this.scanner.nextInt();
-                this.cart.addProduct(product, amount);
+            try {
+                Product product = this.storage.getProduct(productId);
+                System.out.println(this.view.showProduct(product));
+                System.out.println(this.view.requestProductAction());
+                int productAction = this.scanner.nextInt();
+                if (productAction == 1) {
+                    System.out.println(this.view.requestProductAmount());
+                    int amount = this.scanner.nextInt();
+                    this.cart.addProduct(product, amount);
+                }
+            } catch (RuntimeException e) {
+                System.out.println(e.getMessage());
             }
         }
     }
@@ -73,12 +80,14 @@ public class ConsoleController {
             System.out.println(this.view.requestCartAction());
             int cartAction = this.scanner.nextInt();
             if (cartAction == 1) {
-                System.out.println(this.view.showPaidMessage());
-                this.cart.clear();
+                if (this.payment.pay("card", this.cart.getTotal())) {
+                    this.cart.clear();
+                }
             }
             if (cartAction == 2) {
-                System.out.println(this.view.showPaidMessage());
-                this.cart.clear();
+                if (this.payment.pay("thanks", this.cart.getTotal())) {
+                    this.cart.clear();
+                }
             }
 
             if (cartAction == 3) {
